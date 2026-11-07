@@ -1,0 +1,38 @@
+# Spectra AntiCheat - main configuration
+# Per-check settings live in checks.yml, messages in messages.yml.
+
+alerts:
+  # Staff with spectra.alerts get alerts switched on automatically when they join.
+  auto-enable: true
+  # Minimum alert level staff receive by default: LOW, MEDIUM, HIGH or CRITICAL.
+  # Each staff member can change their own with /spectra alerts <level>.
+  default-minimum-level: LOW
+  # Minimum milliseconds between two alerts for the same player and check.
+  cooldown-ms: 1000
+  # Also print alerts to the console.
+  console: true
+
+punishments:
+  # Master switch for automatic punishments. Keep this OFF until your checks
+  # have been tested on your server - flags will still alert and log.
+  enabled: false
+  # Tell staff (spectra.notify) when an automatic punishment runs.
+  notify-staff: true
+
+violations:
+  # Violations kept in memory per player for /spectra logs.
+  history-size: 100
+  # An alert becomes CRITICAL when this many different checks flagged the
+  # same player within the window below (corroborating detections).
+  critical-distinct-checks: 3
+  critical-window-seconds: 30
+
+logging:
+  # Write every flag and punishment to plugins/Spectra/logs/violations-<date>.log
+  enabled: true
+
+processing:
+  # Packets processed per player per server tick. Leftovers carry over to the next tick.
+  max-packets-per-tick: 300
+  # Packets buffered per player before new ones are dropped (flood protection).
+  max-queue-size: 2000

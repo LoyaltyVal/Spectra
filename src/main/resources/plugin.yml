@@ -1,0 +1,66 @@
+name: Spectra
+version: '${version}'
+main: com.spectra.Spectra
+api-version: '1.20'
+description: Modular anticheat with configurable checks, violation tracking and staff tooling.
+authors: [Spectra]
+depend: [packetevents]
+
+commands:
+  spectra:
+    description: Spectra anticheat administration.
+    usage: /spectra help
+    aliases: [spec]
+
+permissions:
+  spectra.admin:
+    description: Full access to Spectra.
+    default: op
+    children:
+      spectra.command: true
+      spectra.alerts: true
+      spectra.notify: true
+      spectra.info: true
+      spectra.logs: true
+      spectra.checks: true
+      spectra.reload: true
+      spectra.stats: true
+      spectra.exempt: true
+      spectra.reset: true
+      spectra.debug: true
+  spectra.command:
+    description: Use /spectra.
+    default: op
+  spectra.alerts:
+    description: Receive and toggle anticheat alerts.
+    default: op
+  spectra.notify:
+    description: Receive punishment notifications.
+    default: op
+  spectra.info:
+    description: Investigate a player.
+    default: op
+  spectra.logs:
+    description: View a player's violation history.
+    default: op
+  spectra.checks:
+    description: List and toggle checks.
+    default: op
+  spectra.reload:
+    description: Reload configuration.
+    default: op
+  spectra.stats:
+    description: View anticheat statistics.
+    default: op
+  spectra.exempt:
+    description: Exempt players from checks.
+    default: op
+  spectra.reset:
+    description: Reset a player's violations.
+    default: op
+  spectra.debug:
+    description: Stream check debug output for a player.
+    default: op
+  spectra.bypass:
+    description: Never flagged by any check.
+    default: false

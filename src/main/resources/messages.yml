@@ -1,0 +1,96 @@
+# Spectra messages - MiniMessage format: https://docs.advntr.dev/minimessage/format
+# <prefix> can be used in any message.
+
+prefix: "<gradient:#7F5AF0:#2CB1BC><bold>SPECTRA</bold></gradient> <dark_gray>»</dark_gray>"
+
+no-permission: "<prefix> <red>You don't have permission to do that."
+player-only: "<prefix> <red>Only players can use this."
+player-not-found: "<prefix> <red>No tracked online player named <white><name></white>."
+unknown-player: "<prefix> <red>Spectra has never seen a player named <white><name></white>."
+unknown-check: "<prefix> <red>Unknown check <white><check></white>. See <white>/spectra checks</white>."
+unknown-level: "<prefix> <red>Unknown level <white><level></white>. Use LOW, MEDIUM, HIGH or CRITICAL."
+usage: "<prefix> <gray>Usage: <white><usage>"
+reloaded: "<prefix> <green>Configuration reloaded."
+
+help:
+  - "<prefix> <white>Spectra AntiCheat <gray>v<version>"
+  - " <aqua>/<label> alerts [level]</aqua> <dark_gray>-</dark_gray> <gray>Toggle alerts or set your minimum level"
+  - " <aqua>/<label> notify</aqua> <dark_gray>-</dark_gray> <gray>Toggle punishment notifications"
+  - " <aqua>/<label> info <player></aqua> <dark_gray>-</dark_gray> <gray>Investigate a player"
+  - " <aqua>/<label> logs <player> [page]</aqua> <dark_gray>-</dark_gray> <gray>Violation history"
+  - " <aqua>/<label> checks [toggle <check>]</aqua> <dark_gray>-</dark_gray> <gray>List or toggle checks"
+  - " <aqua>/<label> exempt <player> [check|all]</aqua> <dark_gray>-</dark_gray> <gray>Toggle an exemption"
+  - " <aqua>/<label> reset <player> [check]</aqua> <dark_gray>-</dark_gray> <gray>Reset violations"
+  - " <aqua>/<label> debug <player> [check]</aqua> <dark_gray>-</dark_gray> <gray>Stream check debug output"
+  - " <aqua>/<label> stats</aqua> <dark_gray>-</dark_gray> <gray>Anticheat statistics"
+  - " <aqua>/<label> reload</aqua> <dark_gray>-</dark_gray> <gray>Reload configuration"
+
+alert:
+  format: "<prefix> <experimental><white><player></white> <gray>failed</gray> <level_color><check></level_color> <dark_gray>(</dark_gray><white>x<vl></white><dark_gray>)</dark_gray>"
+  experimental-tag: "<dark_gray>[EXP]</dark_gray> "
+  hover:
+    - "<gray>Check: <white><check></white> <dark_gray>(<category>)"
+    - "<gray>Level: <level_color><level></level_color>"
+    - "<gray>Violations: <white><vl>"
+    - "<gray>Ping: <white><ping>ms</white>  TPS: <white><tps>"
+    - "<gray>Info: <white><info>"
+    - ""
+    - "<yellow>Click to investigate"
+
+alerts:
+  enabled: "<prefix> <green>Alerts enabled <gray>(minimum level: <level_color><level></level_color>)."
+  disabled: "<prefix> <red>Alerts disabled."
+  level: "<prefix> <gray>Alerts enabled with minimum level <level_color><level></level_color>."
+  notify-enabled: "<prefix> <green>Punishment notifications enabled."
+  notify-disabled: "<prefix> <red>Punishment notifications disabled."
+
+punish:
+  notify: "<prefix> <red><player></red> <gray>was automatically punished for</gray> <white><check></white> <dark_gray>(x<vl>)"
+
+info:
+  header: "<prefix> <white>Investigation: <aqua><player>"
+  details:
+    - " <gray>UUID: <white><uuid>"
+    - " <gray>Client: <white><client></white>  Ping: <white><ping>ms</white>  TPS: <white><tps>"
+    - " <gray>Online for: <white><online>"
+    - " <gray>Total VL: <white><total_vl></white>  Flags this session: <white><flags>"
+    - " <gray>Exemptions: <white><exemptions>"
+  checks-header: " <gray>Active violations:"
+  check-entry: "  <dark_gray>•</dark_gray> <white><check></white> <gray>VL <white><vl></white> <dark_gray>|</dark_gray> buffer <white><buffer>"
+  no-violations: "  <green>No active violations."
+
+logs:
+  header: "<prefix> <white>History for <aqua><player></aqua> <gray>(page <page>/<pages>)"
+  entry: "  <dark_gray><time></dark_gray> <level_color><check></level_color> <gray>x<white><vl></white> <dark_gray>-</dark_gray> <gray><info>"
+  empty: "<prefix> <gray>No violations recorded for <white><player></white> this session."
+
+checks:
+  header: "<prefix> <white>Checks <gray>(<enabled>/<total> enabled) <dark_gray>- click one to toggle"
+  category: " <aqua><bold><category>"
+  entry: "  <status> <white><check></white> <dark_gray>(<id>)</dark_gray> <experimental>"
+  experimental-tag: "<dark_gray>[EXP]"
+  status-enabled: "<green>●</green>"
+  status-disabled: "<red>●</red>"
+  entry-hover: "<gray><description><newline><newline><yellow>Click to toggle"
+  toggled-on: "<prefix> <white><check></white> <green>enabled</green>."
+  toggled-off: "<prefix> <white><check></white> <red>disabled</red>."
+
+exempt:
+  added: "<prefix> <white><player></white> <gray>is now exempt from <white><scope></white>."
+  removed: "<prefix> <white><player></white> <gray>is no longer exempt from <white><scope></white>."
+
+reset: "<prefix> <green>Reset violations for <white><player></white> <gray>(<scope>)."
+
+debug:
+  enabled: "<prefix> <gray>Debugging <white><player></white> <dark_gray>(<scope>)</dark_gray>. Run again to stop."
+  disabled: "<prefix> <gray>Stopped debugging <white><player></white>."
+  line: "<dark_gray>[<aqua>DBG</aqua>]</dark_gray> <gray><player></gray> <white><check></white><dark_gray>:</dark_gray> <gray><message>"
+
+stats:
+  - "<prefix> <white>Statistics"
+  - " <gray>Tracked players: <white><players>"
+  - " <gray>Checks: <white><checks_enabled></white>/<white><checks_total></white> enabled"
+  - " <gray>Flags this session: <white><flags></white>  Punishments: <white><punishments>"
+  - " <gray>Packets processed: <white><packets></white>  Dropped: <white><dropped>"
+  - " <gray>Processing: <white><avg_ms>ms</white>/tick avg  TPS: <white><tps>"
+  - " <gray>Uptime: <white><uptime>"

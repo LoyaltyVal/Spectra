@@ -1,0 +1,161 @@
+# Spectra - per-check configuration
+#
+# Every check has its own settings:
+#   enabled              Run the check at all.
+#   experimental         Experimental checks alert (tagged [EXP]) but never punish.
+#   alert-vl             Minimum violation level before staff are alerted.
+#   max-buffer           Suspicious samples needed in a row before a flag.
+#                        0 = flag on the first sample (only for impossible packets).
+#   buffer-decay         How much buffer one clean sample removes.
+#   vl-decay-per-minute  Violation level removed per minute.
+#   punish.enabled       Allow automatic punishment for this check
+#                        (also needs punishments.enabled in config.yml).
+#   punish.vl            Violation level that triggers the punishment.
+#   punish.commands      Console commands. Placeholders: %player% %uuid% %check% %vl%
+#   options              Check-specific tuning values.
+#
+# These are starting values, not validated thresholds. Test on your own server
+# (ping, TPS, client versions and other plugins all matter) before enabling punishments.
+# Checks added in future versions are appended here automatically with defaults.
+
+checks:
+  # ---------------------------------------------------------------- movement
+  fly-a:
+    enabled: true
+    experimental: false
+    alert-vl: 2.0
+    max-buffer: 3.0
+    buffer-decay: 0.25
+    vl-decay-per-minute: 3.0
+    punish:
+      enabled: false
+      vl: 25.0
+      commands:
+        - "kick %player% [Spectra] Unfair advantage (%check%)"
+    options:
+      # Allowed difference (blocks) between real and predicted vertical motion.
+      tolerance: 0.001
+
+  speed-a:
+    enabled: true
+    experimental: false
+    alert-vl: 2.0
+    max-buffer: 3.0
+    buffer-decay: 0.25
+    vl-decay-per-minute: 3.0
+    punish:
+      enabled: false
+      vl: 25.0
+      commands:
+        - "kick %player% [Spectra] Unfair advantage (%check%)"
+    options:
+      # Allowed horizontal speed above the vanilla air-friction limit (blocks/tick).
+      tolerance: 0.002
+
+  nofall-a:
+    enabled: true
+    experimental: false
+    alert-vl: 2.0
+    max-buffer: 2.0
+    buffer-decay: 0.5
+    vl-decay-per-minute: 3.0
+    punish:
+      enabled: false
+      vl: 20.0
+      commands:
+        - "kick %player% [Spectra] Unfair advantage (%check%)"
+
+  timer-a:
+    enabled: true
+    experimental: false
+    alert-vl: 2.0
+    max-buffer: 1.0
+    buffer-decay: 0.005
+    vl-decay-per-minute: 4.0
+    punish:
+      enabled: false
+      vl: 20.0
+      commands:
+        - "kick %player% [Spectra] Unfair advantage (%check%)"
+    options:
+      # Milliseconds of movement packets a player may send ahead of real time.
+      max-balance: 150.0
+      # Lower bound of the balance, so lag can't be "banked" for later abuse.
+      min-balance: -1000.0
+
+  # ------------------------------------------------------------------ combat
+  noswing-a:
+    enabled: true
+    experimental: false
+    alert-vl: 2.0
+    max-buffer: 2.0
+    buffer-decay: 0.25
+    vl-decay-per-minute: 3.0
+    punish:
+      enabled: false
+      vl: 15.0
+      commands:
+        - "kick %player% [Spectra] Unfair advantage (%check%)"
+
+  autoclicker-a:
+    enabled: true
+    experimental: false
+    alert-vl: 2.0
+    max-buffer: 2.0
+    buffer-decay: 0.05
+    vl-decay-per-minute: 2.0
+    punish:
+      enabled: false
+      vl: 15.0
+      commands:
+        - "kick %player% [Spectra] Unfair advantage (%check%)"
+    options:
+      # Clicks per second above which a one-second window counts as suspicious.
+      max-cps: 22.0
+
+  reach-a:
+    enabled: true
+    experimental: true
+    alert-vl: 2.0
+    max-buffer: 3.0
+    buffer-decay: 0.25
+    vl-decay-per-minute: 3.0
+    punish:
+      enabled: false
+      vl: 20.0
+      commands:
+        - "kick %player% [Spectra] Unfair advantage (%check%)"
+    options:
+      max-reach: 3.0
+      leniency: 0.15
+      # Extra hitbox growth to cover client-side interpolation.
+      hitbox-expand: 0.1
+      # Cap on latency compensation, in blocks.
+      max-compensation: 1.5
+
+  # ------------------------------------------------------------------ packet
+  badpackets-a:
+    enabled: true
+    experimental: false
+    alert-vl: 1.0
+    max-buffer: 0.0
+    buffer-decay: 0.0
+    vl-decay-per-minute: 1.0
+    punish:
+      enabled: false
+      vl: 5.0
+      commands:
+        - "kick %player% [Spectra] Invalid packets"
+
+  badpackets-b:
+    enabled: true
+    experimental: false
+    alert-vl: 1.0
+    max-buffer: 0.0
+    buffer-decay: 0.0
+    vl-decay-per-minute: 1.0
+    punish:
+      enabled: false
+      vl: 5.0
+      commands:
+        - "kick %player% [Spectra] Invalid packets"
